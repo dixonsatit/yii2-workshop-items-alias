@@ -1,7 +1,8 @@
 Yii2 Workshop Items Alias
 ============================
 
-อ่านเนื้อหาได้ที่นี่ 
+[อ่านเนื้อหาได้ที่นี่](http://dixonsatit.github.io/2015/07/21/item-alias.html)
+
 ### Install
 - สร้าง db ชื่อ yii2-workshop-items-alias
 - นำเข้าข้อมูลไฟล์ `yii2-workshop-items-alias.sql`
