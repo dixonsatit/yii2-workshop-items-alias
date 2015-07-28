@@ -4,8 +4,9 @@ namespace app\models;
 
 use Yii;
 use yii\helpers\ArrayHelper;
+use app\models\Skill;
 use yii\behaviors\AttributeBehavior;
-use \yii\db\ActiveRecord;
+use yii\db\ActiveRecord;
 /**
  * This is the model class for table "{{%resume}}".
  *
@@ -181,12 +182,14 @@ class Resume extends ActiveRecord
     }
 
     public function getSkillName(){
-        $skills = $this->getItemSkill();
+        //$skills = $this->getItemSkill();
+        $skills = ArrayHelper::map(Skill::find()->all(),'id','name');
         $skillSelected = explode(',', $this->skill);
         $skillSelectedName = [];
         foreach ($skills as $key => $skillName) {
           foreach ($skillSelected as $skillKey) {
-            if($key === $skillKey){
+
+            if($key === (int)$skillKey){
               $skillSelectedName[] = $skillName;
             }
           }

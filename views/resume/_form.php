@@ -1,7 +1,9 @@
 <?php
 
 use yii\helpers\Html;
+use yii\helpers\ArrayHelper;
 use yii\bootstrap\ActiveForm;
+use app\models\Skill;
 
 /* @var $this yii\web\View */
 /* @var $model app\models\Resume */
@@ -31,7 +33,8 @@ use yii\bootstrap\ActiveForm;
         <?= $form->field($model, 'marital_status')->radioList($model->getItemMarital()) ?>
       </div>
       <div class="col-md-4">
-        <?= $form->field($model, 'skill')->checkBoxList($model->getItemSkill()) ?>
+        <?php $form->field($model, 'skill')->checkBoxList($model->getItemSkill()) ?>
+        <?= $form->field($model, 'skill')->checkBoxList(ArrayHelper::map(Skill::find()->all(),'id','name')) ?>
       </div>
     </div>
 

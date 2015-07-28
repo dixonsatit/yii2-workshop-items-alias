@@ -24,19 +24,32 @@ $this->params['breadcrumbs'][] = $this->title;
             ],
         ]) ?>
     </p>
-
+    <?php
+    $items = [
+      'id'=>'1',
+      'title'=>'นาย',
+      'firstname'=>'สาธิต',
+      'lastname'=>'สีถาพล'
+    ];
+    echo DetailView::widget([
+        'model' => $items,
+        'attributes' => [
+          'id',
+          'title',
+          'firstname',
+          'lastname',
+        ],
+    ]);
+    ?>
     <?= DetailView::widget([
         'model' => $model,
+        //'template'=>'<tr><th>{label}</th><td><i class="glyphicon glyphicon-info-sign"></i></i> {value}</td></tr>',
         'attributes' => [
-            'id',
-            'title',
-            'firstname',
-            'lastname',
-            'education_level',
-            'marital_status',
-            'sex',
-            'skill',
-            // virtual attribute
+          [
+                'format'=>'html',
+                'label' => 'color',
+                'value' => '<span style="color:green;">'.$model->educationName.'</span>'
+            ],
             'fullName',
             'educationName',
             'maritalName',

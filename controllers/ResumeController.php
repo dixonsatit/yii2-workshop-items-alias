@@ -21,6 +21,7 @@ class ResumeController extends Controller
                 'class' => VerbFilter::className(),
                 'actions' => [
                     'delete' => ['post'],
+                    'delete-all' => ['post'],
                 ],
             ],
         ];
@@ -34,7 +35,7 @@ class ResumeController extends Controller
     {
         $searchModel = new ResumeSearch();
         $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
-
+          $dataProvider->getmodels();
         return $this->render('index', [
             'searchModel' => $searchModel,
             'dataProvider' => $dataProvider,
@@ -100,7 +101,12 @@ class ResumeController extends Controller
     public function actionDelete($id)
     {
         $this->findModel($id)->delete();
+        return $this->redirect(['index']);
+    }
 
+    public function actionDeleteAll(){
+        $delete_ids = explode(',', Yii::$app->request->post('ids'));
+        Resume::deleteAll(['in','id',$delete_ids]);
         return $this->redirect(['index']);
     }
 

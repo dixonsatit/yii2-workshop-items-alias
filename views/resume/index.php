@@ -1,6 +1,7 @@
 <?php
 
 use yii\helpers\Html;
+use yii\helpers\Url;
 use yii\grid\GridView;
 use app\models\Resume;
 /* @var $this yii\web\View */
@@ -17,6 +18,7 @@ $this->params['breadcrumbs'][] = $this->title;
 
     <p>
         <?= Html::a(Yii::t('app', 'Create Resume'), ['create'], ['class' => 'btn btn-success']) ?>
+        <?= Html::button(Yii::t('app', 'Delete'), ['class' => 'btn btn-warning pull-right','id'=>'btn-delete']) ?>
     </p>
 
     <?= GridView::widget([
@@ -24,6 +26,7 @@ $this->params['breadcrumbs'][] = $this->title;
         'filterModel' => $searchModel,
         'columns' => [
             ['class' => 'yii\grid\SerialColumn'],
+            ['class' => 'yii\grid\CheckboxColumn'],
             // 'id',
             // 'title',
             // 'firstname',
@@ -71,3 +74,17 @@ $this->params['breadcrumbs'][] = $this->title;
     ]); ?>
 
 </div>
+
+<?php
+$this->registerJs('
+  jQuery("#btn-delete").click(function(){
+    var keys = $("#w0").yiiGridView("getSelectedRows");
+    //console.log(keys);
+    if(keys.length>0){
+      jQuery.post("'.Url::to(['delete-all']).'",{ids:keys.join()},function(){
+
+      });
+    }
+  });
+');
+ ?>
