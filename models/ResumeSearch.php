@@ -73,6 +73,9 @@ class ResumeSearch extends Resume
          $query->andWhere('firstname LIKE "%' . $this->fullName . '%" ' .
              'OR lastname LIKE "%' . $this->fullName . '%"'
          );
+         $query->andWhere("DATE_FORMAT(FROM_UNIXTIME(created_at), '%Y-%m-%d') = '$this->created_at' ");
+
+
 
         $query->andFilterWhere(['like', 'title', $this->title])
             ->andFilterWhere(['like', 'firstname', $this->firstname])

@@ -79,9 +79,8 @@ $this->params['breadcrumbs'][] = $this->title;
 $this->registerJs('
   jQuery("#btn-delete").click(function(){
     var keys = $("#w0").yiiGridView("getSelectedRows");
-    //console.log(keys);
     if(keys.length>0){
-      jQuery.post("'.Url::to(['delete-all']).'",{ids:keys.join()},function(){
+      jQuery.post("'.Url::to(['delete-all']).'",{ids:keys},function(){
 
       });
     }

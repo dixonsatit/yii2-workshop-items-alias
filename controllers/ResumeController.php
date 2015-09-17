@@ -105,9 +105,9 @@ class ResumeController extends Controller
     }
 
     public function actionDeleteAll(){
-        $delete_ids = explode(',', Yii::$app->request->post('ids'));
-        Resume::deleteAll(['in','id',$delete_ids]);
-        return $this->redirect(['index']);
+      $delete_ids = explode(',', Yii::$app->request->post('ids'));
+      Resume::deleteAll(['in','id',$delete_ids]);
+      return $this->redirect(['index']);
     }
 
     /**
